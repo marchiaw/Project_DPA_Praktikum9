@@ -1,12 +1,15 @@
-# Fungsi Tambah Data
-
 def tambah():
     print("\n=== Tambah Data Karyawan ===")
 
-    nama = input("Nama: ").strip()
-    jabatan = input("Jabatan: ").strip()
-    gaji = input("Gaji: ").strip()
-    status = input("Status (aktif / non-aktif): ").strip()
+    nama = str(input("Nama: ")).strip()
+    jabatan = str(input("Jabatan: ")).strip()
+     while True:
+        try:
+            gaji = int(input("Gaji: ").strip())
+            break
+        except ValueError:
+            print("Gaji harus berupa angka. Coba lagi.")
+    status = str(input("Status (aktif / non-aktif): ")).strip()
 
     if len(data) == 0:
         id_baru = 1
@@ -24,8 +27,6 @@ def tambah():
     data.append(karyawan)
     print("Data berhasil ditambahkan.\n")
 
-# Fungsi Tampilkan Data
-
 def tampil():
     print("\n=== Daftar Karyawan ===")
     if len(data) == 0:
@@ -38,7 +39,6 @@ def tampil():
                   d["gaji"] + " | " +
                   d["status"])
         print()
-# Fungsi Edit Data
 
 def edit():
     tampil()
@@ -48,18 +48,21 @@ def edit():
 
     id_cari = input("Masukkan ID yang mau diedit: ").strip()
     id_cari = int(id_cari)
-
     ketemu = False
     for d in data:
         if d["id"] == id_cari:
             ketemu = True
-
             print("Kosongkan jika tidak ingin mengubah.")
 
-            nama = input("Nama baru: ").strip()
-            jabatan = input("Jabatan baru: ").strip()
-            gaji = input("Gaji baru: ").strip()
-            status = input("Status baru: ").strip()
+            nama = str(input("Nama baru: ")).strip()
+            jabatan = str(input("Jabatan baru: ")).strip()
+            while True:
+                try:
+                    gaji = int(input("Gaji: ").strip())
+                    break
+                except ValueError:
+                    print("Gaji harus berupa angka. Coba lagi.")
+            status = str(input("Status baru: ")).strip()
 
             if nama != "":
                 d["nama"] = nama
@@ -69,15 +72,83 @@ def edit():
                 d["gaji"] = gaji
             if status != "":
                 d["status"] = status
-
             print("Data berhasil diupdate.\n")
             break
 
     if ketemu == False:
         print("ID tidak ditemukan.\n")
+        
+def hapus():
+    tampil()
+    if len(data) == 0:
+        return
+    id_cari = input("Masukkan ID yang mau dihapus: ").strip()
+    id_cari = int(id_cari)
 
-# Menu yang Utama
+    ketemu = False
+    for d in data:
+        if d["id"] == id_cari:
+            ketemu = True
+            data.remove(d)
+            print("Data dihapus.\n")
+            break
+    if ketemu == False:
+        print("ID tidak ditemukan.\n")
 
+def cari():
+    print("\n=== Menu Pencarian ===")
+    print("1. Cari berdasarkan nama")
+    print("2. Filter berdasarkan jabatan")
+    print("3. Filter berdasarkan status")
+    print("4. Kembali")
+
+    pilih = input("Pilih menu: ").strip()
+
+    if pilih == "1":
+        q = input("Masukkan nama: ").strip().lower()
+        ketemu = False
+        for d in data:
+            if q in d["nama"].lower().strip():
+                ketemu = True
+                print("[" + str(d["id"]) + "] " +
+                      d["nama"] + " | " +
+                      d["jabatan"] + " | " +
+                      d["gaji"] + " | " +
+                      d["status"])
+        if ketemu == False:
+            print("Tidak ditemukan.\n")
+    elif pilih == "2":
+        q = input("Masukkan jabatan: ").strip().lower()
+
+        ketemu = False
+        for d in data:
+            if q == d["jabatan"].lower().strip():
+                ketemu = True
+                print("[" + str(d["id"]) + "] " +
+                      d["nama"] + " | " +
+                      d["jabatan"] + " | " +
+                      d["gaji"] + " | " +
+                      d["status"])
+        if ketemu == False:
+            print("Tidak ditemukan.\n")
+
+    elif pilih == "3":
+        q = input("Masukkan status (aktif / non-aktif): ").strip().lower()
+
+        ketemu = False
+        for d in data:
+            if q == d["status"].lower().strip():
+                ketemu = True
+                print("[" + str(d["id"]) + "] " +
+                      d["nama"] + " | " +
+                      d["jabatan"] + " | " +
+                      d["gaji"] + " | " +
+                      d["status"])
+        if ketemu == False:
+            print("Tidak ditemukan.\n")
+    else:
+        return
+        
 while True:
     print("==== Sistem Pendataan Karyawan ====")
     print("1. Tampilkan data")
