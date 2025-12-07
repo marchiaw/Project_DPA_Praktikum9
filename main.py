@@ -1,3 +1,29 @@
+# Fungsi Tambah Data
+
+def tambah():
+    print("\n=== Tambah Data Karyawan ===")
+
+    nama = input("Nama: ").strip()
+    jabatan = input("Jabatan: ").strip()
+    gaji = input("Gaji: ").strip()
+    status = input("Status (aktif / non-aktif): ").strip()
+
+    if len(data) == 0:
+        id_baru = 1
+    else:
+        id_baru = data[-1]["id"] + 1
+
+    karyawan = {
+        "id": id_baru,
+        "nama": nama,
+        "jabatan": jabatan,
+        "gaji": gaji,
+        "status": status
+    }
+
+    data.append(karyawan)
+    print("Data berhasil ditambahkan.\n")
+
 # Menu yang Utama
 
 while True:
