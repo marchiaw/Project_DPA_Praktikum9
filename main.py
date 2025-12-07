@@ -24,6 +24,58 @@ def tambah():
     data.append(karyawan)
     print("Data berhasil ditambahkan.\n")
 
+# Fungsi Tampilkan Data
+
+def tampil():
+    print("\n=== Daftar Karyawan ===")
+    if len(data) == 0:
+        print("Belum ada data.\n")
+    else:
+        for d in data:
+            print("[" + str(d["id"]) + "] " +
+                  d["nama"] + " | " +
+                  d["jabatan"] + " | " +
+                  d["gaji"] + " | " +
+                  d["status"])
+        print()
+# Fungsi Edit Data
+
+def edit():
+    tampil()
+
+    if len(data) == 0:
+        return
+
+    id_cari = input("Masukkan ID yang mau diedit: ").strip()
+    id_cari = int(id_cari)
+
+    ketemu = False
+    for d in data:
+        if d["id"] == id_cari:
+            ketemu = True
+
+            print("Kosongkan jika tidak ingin mengubah.")
+
+            nama = input("Nama baru: ").strip()
+            jabatan = input("Jabatan baru: ").strip()
+            gaji = input("Gaji baru: ").strip()
+            status = input("Status baru: ").strip()
+
+            if nama != "":
+                d["nama"] = nama
+            if jabatan != "":
+                d["jabatan"] = jabatan
+            if gaji != "":
+                d["gaji"] = gaji
+            if status != "":
+                d["status"] = status
+
+            print("Data berhasil diupdate.\n")
+            break
+
+    if ketemu == False:
+        print("ID tidak ditemukan.\n")
+
 # Menu yang Utama
 
 while True:
