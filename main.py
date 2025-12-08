@@ -45,7 +45,6 @@ def edit():
         if d["id"] == id_cari:
             ketemu = True
             print("Kosongkan jika tidak ingin mengubah.")
-
             nama = str(input("Nama baru: ")).strip()
             jabatan = str(input("Jabatan baru: ")).strip()
             while True:
@@ -93,6 +92,7 @@ def cari():
     print("4. Kembali")
 
     pilih = input("Pilih menu: ").strip()
+    
     if pilih == "1":
         q = input("Masukkan nama: ").strip().lower()
         ketemu = ()
@@ -102,6 +102,7 @@ def cari():
                 print(f"[{d['id']}] {d['nama']} | {d['jabatan']} | {d['gaji']} | {d['status']}")
         if ketemu == False:
             print("Tidak ditemukan.\n")
+            
     elif pilih == "2":
         q = input("Masukkan jabatan: ").strip().lower()
         ketemu = ()
