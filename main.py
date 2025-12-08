@@ -1,16 +1,15 @@
+data = []
 def tambah():
     print("\n=== Tambah Data Karyawan ===")
-
     nama = str(input("Nama: ")).strip()
     jabatan = str(input("Jabatan: ")).strip()
-     while True:
+    while True:
         try:
             gaji = int(input("Gaji: ").strip())
             break
         except ValueError:
             print("Gaji harus berupa angka. Coba lagi.")
     status = str(input("Status (aktif / non-aktif): ")).strip()
-
     if len(data) == 0:
         id_baru = 1
     else:
@@ -23,7 +22,6 @@ def tambah():
         "gaji": gaji,
         "status": status
     }
-
     data.append(karyawan)
     print("Data berhasil ditambahkan.\n")
 
@@ -33,16 +31,11 @@ def tampil():
         print("Belum ada data.\n")
     else:
         for d in data:
-            print("[" + str(d["id"]) + "] " +
-                  d["nama"] + " | " +
-                  d["jabatan"] + " | " +
-                  d["gaji"] + " | " +
-                  d["status"])
+            print(f"[{d['id']}] {d['nama']} | {d['jabatan']} | {d['gaji']} | {d['status']}")
         print()
 
 def edit():
     tampil()
-
     if len(data) == 0:
         return
 
@@ -74,7 +67,6 @@ def edit():
                 d["status"] = status
             print("Data berhasil diupdate.\n")
             break
-
     if ketemu == False:
         print("ID tidak ditemukan.\n")
         
@@ -84,7 +76,6 @@ def hapus():
         return
     id_cari = input("Masukkan ID yang mau dihapus: ").strip()
     id_cari = int(id_cari)
-
     ketemu = False
     for d in data:
         if d["id"] == id_cari:
@@ -103,47 +94,32 @@ def cari():
     print("4. Kembali")
 
     pilih = input("Pilih menu: ").strip()
-
     if pilih == "1":
         q = input("Masukkan nama: ").strip().lower()
         ketemu = False
         for d in data:
             if q in d["nama"].lower().strip():
                 ketemu = True
-                print("[" + str(d["id"]) + "] " +
-                      d["nama"] + " | " +
-                      d["jabatan"] + " | " +
-                      d["gaji"] + " | " +
-                      d["status"])
+                print(f"[{d['id']}] {d['nama']} | {d['jabatan']} | {d['gaji']} | {d['status']}")
         if ketemu == False:
             print("Tidak ditemukan.\n")
     elif pilih == "2":
         q = input("Masukkan jabatan: ").strip().lower()
-
         ketemu = False
         for d in data:
             if q == d["jabatan"].lower().strip():
                 ketemu = True
-                print("[" + str(d["id"]) + "] " +
-                      d["nama"] + " | " +
-                      d["jabatan"] + " | " +
-                      d["gaji"] + " | " +
-                      d["status"])
+                print(f"[{d['id']}] {d['nama']} | {d['jabatan']} | {d['gaji']} | {d['status']}")
         if ketemu == False:
             print("Tidak ditemukan.\n")
 
     elif pilih == "3":
         q = input("Masukkan status (aktif / non-aktif): ").strip().lower()
-
         ketemu = False
         for d in data:
             if q == d["status"].lower().strip():
                 ketemu = True
-                print("[" + str(d["id"]) + "] " +
-                      d["nama"] + " | " +
-                      d["jabatan"] + " | " +
-                      d["gaji"] + " | " +
-                      d["status"])
+                print(f"[{d['id']}] {d['nama']} | {d['jabatan']} | {d['gaji']} | {d['status']}")
         if ketemu == False:
             print("Tidak ditemukan.\n")
     else:
@@ -159,7 +135,6 @@ while True:
     print("6. Keluar")
 
     menu = input("Pilih menu (1-6): ").strip()
-
     if menu == "1":
         tampil()
     elif menu == "2":
