@@ -38,10 +38,9 @@ def edit():
     tampil()
     if len(data) == 0:
         return
-
     id_cari = input("Masukkan ID yang mau diedit: ").strip()
     id_cari = int(id_cari)
-    ketemu = False
+    ketemu = ()
     for d in data:
         if d["id"] == id_cari:
             ketemu = True
@@ -76,7 +75,7 @@ def hapus():
         return
     id_cari = input("Masukkan ID yang mau dihapus: ").strip()
     id_cari = int(id_cari)
-    ketemu = False
+    ketemu = ()
     for d in data:
         if d["id"] == id_cari:
             ketemu = True
@@ -96,7 +95,7 @@ def cari():
     pilih = input("Pilih menu: ").strip()
     if pilih == "1":
         q = input("Masukkan nama: ").strip().lower()
-        ketemu = False
+        ketemu = ()
         for d in data:
             if q in d["nama"].lower().strip():
                 ketemu = True
@@ -105,7 +104,7 @@ def cari():
             print("Tidak ditemukan.\n")
     elif pilih == "2":
         q = input("Masukkan jabatan: ").strip().lower()
-        ketemu = False
+        ketemu = ()
         for d in data:
             if q == d["jabatan"].lower().strip():
                 ketemu = True
@@ -115,7 +114,7 @@ def cari():
 
     elif pilih == "3":
         q = input("Masukkan status (aktif / non-aktif): ").strip().lower()
-        ketemu = False
+        ketemu = ()
         for d in data:
             if q == d["status"].lower().strip():
                 ketemu = True
